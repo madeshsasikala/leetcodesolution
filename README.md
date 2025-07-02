@@ -3,4 +3,4 @@
 
 Arrays 
 Binary serach
-Recursion
+Recursions
