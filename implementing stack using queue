@@ -1,0 +1,53 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
+class MyStack {
+    Queue<Integer> queue1 = new LinkedList<>();
+    Queue<Integer> queue2 = new LinkedList<>();
+
+    // Constructor
+    public MyStack() {}
+
+    // Push pannum podhu direct ah queue1 la add pannalaam
+    public void push(int x) {
+        queue1.add(x);
+    }
+
+    // Pop – last added element ah remove pannanum
+    public int pop() {
+        // Last element vara vara, queue2 ku ellam move pannalam
+        while (queue1.size() > 1) {
+            queue2.add(queue1.remove());
+        }
+        // Ithu than last element → idha remove pannanum
+        int top = queue1.remove();
+
+        // Queue1, Queue2 ah swap pannalam
+        Queue<Integer> temp = queue1;
+        queue1 = queue2;
+        queue2 = temp;
+
+        return top;
+    }
+
+    // Top – last added element ah return pannanum, remove panna koodadhu
+    public int top() {
+        while (queue1.size() > 1) {
+            queue2.add(queue1.remove());
+        }
+        int top = queue1.remove(); // take last
+        queue2.add(top);           // again add back to queue2
+
+        // Swap queues
+        Queue<Integer> temp = queue1;
+        queue1 = queue2;
+        queue2 = temp;
+
+        return top;
+    }
+
+    // Queue1 empty ah nu check panni, stack empty nu sollalaam
+    public boolean empty() {
+        return queue1.isEmpty();
+    }
+}
